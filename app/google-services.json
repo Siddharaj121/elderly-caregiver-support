@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "422245683219",
+    "project_id": "elderly-care-giving-support",
+    "storage_bucket": "elderly-care-giving-support.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422245683219:android:7bec12b7dd82786468afe6",
+        "android_client_info": {
+          "package_name": "com.example.loginpage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9Joyreu9YYK3MpnyvB6NqwLoqLbQg0-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

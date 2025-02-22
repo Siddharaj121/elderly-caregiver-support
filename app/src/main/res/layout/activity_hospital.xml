@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HospitalActivity">
+
+    <!-- Hospital Logo -->
+    <ImageView
+        android:id="@+id/hospitalLogo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/hospital_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <!-- Hospital Name -->
+    <EditText
+        android:id="@+id/hospitalName"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="Hospital Name"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/hospitalLogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp" />
+
+    <!-- Hospital Phone Number -->
+    <EditText
+        android:id="@+id/hospitalPhone"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        app:layout_constraintTop_toBottomOf="@id/hospitalName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp" />
+
+    <!-- Hospital Address -->
+    <EditText
+        android:id="@+id/hospitalAddress"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="Hospital Address"
+        android:inputType="textPostalAddress"
+        app:layout_constraintTop_toBottomOf="@id/hospitalPhone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp" />
+
+    <!-- Type of Hospital -->
+    <EditText
+        android:id="@+id/hospitalType"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="Type of Hospital (e.g., General, Specialty)"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/hospitalAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp" />
+
+    <!-- Hospital Email -->
+    <EditText
+        android:id="@+id/hospitalEmail"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="Hospital Email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintTop_toBottomOf="@id/hospitalType"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp" />
+
+    <!-- Hospital Password -->
+    <EditText
+        android:id="@+id/hospitalPassword"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@id/hospitalEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp" />
+
+    <!-- Submit Button -->
+    <Button
+        android:id="@+id/submitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        app:layout_constraintTop_toBottomOf="@id/hospitalPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
