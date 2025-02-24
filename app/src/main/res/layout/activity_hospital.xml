@@ -1,111 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HospitalActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
 
     <!-- Hospital Logo -->
     <ImageView
         android:id="@+id/hospitalLogo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@drawable/hospital_logo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        android:contentDescription="Hospital Logo"
+        android:layout_marginBottom="20dp" />
 
-    <!-- Hospital Name -->
+    <!-- Location Input -->
     <EditText
-        android:id="@+id/hospitalName"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:hint="Hospital Name"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/hospitalLogo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp" />
-
-    <!-- Hospital Phone Number -->
-    <EditText
-        android:id="@+id/hospitalPhone"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:hint="Phone Number"
-        android:inputType="phone"
-        app:layout_constraintTop_toBottomOf="@id/hospitalName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp" />
-
-    <!-- Hospital Address -->
-    <EditText
-        android:id="@+id/hospitalAddress"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:hint="Hospital Address"
-        android:inputType="textPostalAddress"
-        app:layout_constraintTop_toBottomOf="@id/hospitalPhone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp" />
-
-    <!-- Type of Hospital -->
-    <EditText
-        android:id="@+id/hospitalType"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:hint="Type of Hospital (e.g., General, Specialty)"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/hospitalAddress"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp" />
-
-    <!-- Hospital Email -->
-    <EditText
-        android:id="@+id/hospitalEmail"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:hint="Hospital Email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintTop_toBottomOf="@id/hospitalType"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp" />
-
-    <!-- Hospital Password -->
-    <EditText
-        android:id="@+id/hospitalPassword"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/hospitalEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp" />
-
-    <!-- Submit Button -->
-    <Button
-        android:id="@+id/submitBtn"
-        android:layout_width="wrap_content"
+        android:id="@+id/locationEditText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
-        app:layout_constraintTop_toBottomOf="@id/hospitalPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        android:hint="Enter Location"
+        android:inputType="text"
+        android:padding="10dp"
+        android:background="@android:drawable/editbox_background"
+        android:layout_marginBottom="10dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Search Button -->
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search Hospitals"
+        android:padding="10dp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="10dp" />
+
+    <!-- Hospital Dropdown (Spinner) -->
+    <Spinner
+        android:id="@+id/hospitalSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp" />
+
+    <!-- Email Input -->
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Email"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:background="@android:drawable/editbox_background"
+        android:layout_marginBottom="10dp" />
+
+    <!-- Password Input -->
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:background="@android:drawable/editbox_background"
+        android:layout_marginBottom="10dp" />
+
+    <!-- Login Button -->
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:padding="10dp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+</LinearLayout>

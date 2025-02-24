@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void hospitalpg(View v){
-        Intent intent = new Intent(MainActivity.this, HospitalActivity.class);
+        Intent intent = new Intent(MainActivity.this, HospitalLoginActivity.class);
         startActivity(intent);
     }
 

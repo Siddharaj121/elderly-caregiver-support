@@ -13,8 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoginPage"
         tools:targetApi="31">
+
         <activity
-            android:name=".HospitalActivity"
+            android:name=".HospitalLoginActivity"
             android:exported="false" />
         <activity
             android:name=".logInActivity"
