@@ -9,11 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -25,11 +26,6 @@ public class signInActivity extends AppCompatActivity {
     private Button buttonSignIn;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
-
-    public void LogIn(View v){
-        Intent intent = new Intent(signInActivity.this, logInActivity.class);
-        startActivity(intent);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +44,7 @@ public class signInActivity extends AppCompatActivity {
         editTextAddress = findViewById(R.id.editTextAddress);
         buttonSignIn = findViewById(R.id.buttonLogIn);
 
-        buttonSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerUser();
-            }
-        });
+        buttonSignIn.setOnClickListener(v -> registerUser());
     }
 
     private void registerUser() {
@@ -68,7 +59,18 @@ public class signInActivity extends AppCompatActivity {
             return;
         }
 
-        checkIfUserExists(email, name, surname, password, phone, address);
+        // ✅ Secure Authentication with Firebase Auth
+        auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = auth.getCurrentUser();
+                        if (user != null) {
+                            saveUserData(user.getUid(), name, surname, email, phone, address);
+                        }
+                    } else {
+                        Toast.makeText(signInActivity.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private boolean validateInputs(String name, String surname, String email, String password, String phone, String address) {
@@ -99,31 +101,26 @@ public class signInActivity extends AppCompatActivity {
         return true;
     }
 
-    private void checkIfUserExists(String email, String name, String surname, String password, String phone, String address) {
-        CollectionReference usersRef = db.collection("users");
-
-        usersRef.whereEqualTo("email", email).get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    if (!queryDocumentSnapshots.isEmpty()) {
-                        Toast.makeText(signInActivity.this, "Email already registered!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        registerNewUser(name, surname, email, password, phone, address);
-                    }
-                })
-                .addOnFailureListener(e -> Toast.makeText(signInActivity.this, "Error checking email: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-    }
-
-    private void registerNewUser(String name, String surname, String email, String password, String phone, String address) {
+    private void saveUserData(String userId, String name, String surname, String email, String phone, String address) {
         Map<String, Object> user = new HashMap<>();
+        user.put("userId", userId);
         user.put("name", name);
         user.put("surname", surname);
         user.put("email", email);
-        user.put("password", password);
         user.put("phone", phone);
         user.put("address", address);
 
-        db.collection("users").add(user)
-                .addOnSuccessListener(documentReference -> Toast.makeText(signInActivity.this, "User Registered!", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e -> Toast.makeText(signInActivity.this, "Registration failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+        db.collection("users").document(userId).set(user)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(signInActivity.this, "User Registered Successfully!", Toast.LENGTH_SHORT).show();
+                    navigateToHome(); // ✅ Redirect to HomeActivity
+                })
+                .addOnFailureListener(e -> Toast.makeText(signInActivity.this, "Failed to save user data: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+    }
+
+    private void navigateToHome() {
+        Intent intent = new Intent(signInActivity.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

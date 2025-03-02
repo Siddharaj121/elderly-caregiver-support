@@ -12,7 +12,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -41,6 +40,12 @@ public class logInActivity extends AppCompatActivity {
                 loginUser();
             }
         });
+    }
+
+    private void navigateToHome() {
+        Intent intent = new Intent(logInActivity.this, HomeActivity.class);
+        startActivity(intent);
+        finish(); // Prevent going back to login screen
     }
 
     private void loginUser() {
@@ -81,7 +86,7 @@ public class logInActivity extends AppCompatActivity {
 
                             if (storedPassword != null && storedPassword.equals(password)) {
                                 Toast.makeText(logInActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
-                                //navigateToHome();
+                                navigateToHome(); // ✅ Now correctly placed
                             } else {
                                 Toast.makeText(logInActivity.this, "Incorrect Password!", Toast.LENGTH_SHORT).show();
                             }
@@ -91,14 +96,8 @@ public class logInActivity extends AppCompatActivity {
                         Toast.makeText(logInActivity.this, "No user found with this email!", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .addOnFailureListener(e -> Toast.makeText(logInActivity.this, "Login failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                .addOnFailureListener(e ->
+                        Toast.makeText(logInActivity.this, "Login failed: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                );
     }
 }
-/*
-    private void navigateToHome() {
-        Intent intent = new Intent(logInActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
-    }
-}
-*/
